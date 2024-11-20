@@ -1,0 +1,55 @@
+import math
+
+# Function to calculate combinations
+def combinations(n, k):
+    return math.comb(n, k)
+
+# 1. Total number of ways to form a committee (without restrictions)
+total_faculty = 10  # Total number of faculty members
+committee_size = 3  # Size of the committee
+
+total_ways = combinations(total_faculty, committee_size)
+
+# 2. Number of valid committees with at least 1 Mathematics Professor and at least 1 Science Professor
+math_professors = 6  # Number of Mathematics Professors
+science_professors = 4  # Number of Science Professors
+
+# Case 1: 2 Mathematics Professors and 1 Science Professor
+ways_2_math_1_science = combinations(math_professors, 2) * combinations(science_professors, 1)
+
+# Case 2: 1 Mathematics Professor and 2 Science Professors
+ways_1_math_2_science = combinations(math_professors, 1) * combinations(science_professors, 2)
+
+# Total valid committees with at least 1 Mathematics Professor and at least 1 Science Professor
+valid_ways = ways_2_math_1_science + ways_1_math_2_science
+
+# 3. Committees with only Mathematics Professors
+ways_only_math = combinations(math_professors, committee_size) if committee_size <= math_professors else 0
+
+# 4. Committees with only Science Professors
+ways_only_science = combinations(science_professors, committee_size) if committee_size <= science_professors else 0
+
+# 5. Set Theory
+# Set M (Mathematics Professors), Set S (Science Professors)
+M = set(range(1, 7))  # M is the set of Mathematics Professors (1 to 6)
+S = set(range(7, 11))  # S is the set of Science Professors (7 to 10)
+
+# Union M ∪ S (all faculty members)
+union_MS = M.union(S)
+
+# Intersection M ∩ S (no intersection, since no one is both)
+intersection_MS = M.intersection(S)
+
+# Complement of M (those who are not Mathematics Professors)
+complement_M = set(range(1, 11)) - M
+
+# Results
+print(f"Total number of ways to form the committee (without restrictions): {total_ways}")
+print(f"Valid committees (at least 1 Mathematics Professor and 1 Science Professor): {valid_ways}")
+print(f"Committees with only Mathematics Professors: {ways_only_math}")
+print(f"Committees with only Science Professors: {ways_only_science}")
+
+# Set Theory Results
+print(f"Union of M and S (all faculty members): {union_MS}")
+print(f"Intersection of M and S (should be empty): {intersection_MS}")
+print(f"Complement of M (those not in M): {complement_M}")

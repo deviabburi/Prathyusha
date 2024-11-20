@@ -1,0 +1,23 @@
+Problem Statement: Analyzing Selections from a Committee of Members
+Scenario:
+A university is forming a new Research Advisory Committee consisting of faculty members. The university has 10 faculty members in total, out of which 6 are Mathematics Professors and 4 are Science Professors. The committee will be composed of 3 members, selected from this group. The selection process involves both combinations (for choosing the committee members) and conditions related to specific categories of faculty members.
+Conditions:
+1.	The committee must consist of at least 1 Mathematics Professor and at least 1 Science Professor.
+2.	The order in which committee members are chosen does not matter.
+3.	We must also consider the possible number of ways in which the committee could include only Mathematics Professors or only Science Professors, as well as those where both are represented.
+
+
+Explanation of the Code:
+1.	Combinations Calculation:
+	The combinations function uses math.comb(n, k) to compute the number of ways to choose kkk items from nnn items.
+2.	Total Committee Formation:
+	We calculate the total number of ways to form a committee by selecting 3 members from 10 faculty members using combinations.
+3.	Valid Committees (at least 1 Mathematics Professor and 1 Science Professor):
+	We calculate the number of ways to form a committee with combinations of Mathematics Professors and Science Professors, ensuring that both categories are represented.
+4.	Committees with Only Mathematics Professors:
+	We calculate the number of ways to select 3 Mathematics Professors, ensuring that there are enough Mathematics Professors to choose from.
+5.	Committees with Only Science Professors:
+	Similarly, we calculate the number of ways to select 3 Science Professors.
+6.	Set Theory:
+	We define sets MMM and SSS for Mathematics and Science Professors, respectively.
+	We calculate the union M∪SM \cup SM∪S, intersection M∩SM \cap SM∩S, and the complement of MMM (i.e., faculty who are not Mathematics Professors).
