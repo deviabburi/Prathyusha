@@ -1,0 +1,39 @@
+Quantitative Data:
+   Age  Income  Height
+0   25   50000     5.5
+1   32   60000     6.0
+2   47   80000     5.8
+3   54   75000     5.6
+4   23   52000     5.7
+
+Qualitative Data:
+   Gender         City       Job
+0    Male     New York  Engineer
+1  Female  Los Angeles    Doctor
+2  Female      Chicago   Teacher
+3    Male      Houston  Engineer
+4  Female      Phoenix     Nurse
+
+Quantitative Data Summary Statistics:
+             Age        Income    Height
+count   5.000000      5.000000  5.000000
+mean   36.200000  63400.000000  5.720000
+std    13.700365  13520.355025  0.192354
+min    23.000000  50000.000000  5.500000
+25%    25.000000  52000.000000  5.600000
+50%    32.000000  60000.000000  5.700000
+75%    47.000000  75000.000000  5.800000
+max    54.000000  80000.000000  6.000000
+
+Qualitative Data Frequency Counts:
+Gender
+Female    3
+Male      2
+Name: count, dtype: int64
+City
+New York       1
+Los Angeles    1
+Chicago        1
+Houston        1
+Phoenix        1
+Name: count, dtype: int64
