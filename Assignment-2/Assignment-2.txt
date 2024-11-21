@@ -1,34 +1,61 @@
+import numpy as np
 import pandas as pd
+from scipy import stats
 
-# Example of Quantitative Data (Numerical)
-quantitative_data = {
-    'Age': [25, 32, 47, 54, 23],
-    'Income': [50000, 60000, 80000, 75000, 52000],
-    'Height': [5.5, 6.0, 5.8, 5.6, 5.7]
-}
+# Example Quantitative Data (e.g., test scores, ages, etc.)
+data = [56, 78, 90, 65, 82, 91, 74, 65, 89, 77, 84, 72, 66, 88, 91]
 
-# Convert to DataFrame
-quantitative_df = pd.DataFrame(quantitative_data)
-print("Quantitative Data:")
-print(quantitative_df)
+# Step 1: Create a pandas DataFrame or Series
+df = pd.DataFrame(data, columns=['Scores'])
 
-# Example of Qualitative Data (Categorical)
-qualitative_data = {
-    'Gender': ['Male', 'Female', 'Female', 'Male', 'Female'],
-    'City': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'],
-    'Job': ['Engineer', 'Doctor', 'Teacher', 'Engineer', 'Nurse']
-}
+# Step 2: Descriptive Statistics
+mean = np.mean(data)
+median = np.median(data)
+mode = stats.mode(data)[0][0]
+std_dev = np.std(data)
+variance = np.var(data)
+range_data = np.ptp(data)  # Range = max - min
+q1 = np.percentile(data, 25)  # 1st Quartile
+q3 = np.percentile(data, 75)  # 3rd Quartile
+iqr = q3 - q1  # Interquartile Range
 
-# Convert to DataFrame
-qualitative_df = pd.DataFrame(qualitative_data)
-print("\nQualitative Data:")
-print(qualitative_df)
+# Step 3: Display Results
+print("Descriptive Statistics:")
+print(f"Mean: {mean}")
+print(f"Median: {median}")
+print(f"Mode: {mode}")
+print(f"Standard Deviation: {std_dev}")
+print(f"Variance: {variance}")
+print(f"Range: {range_data}")
+print(f"1st Quartile (Q1): {q1}")
+print(f"3rd Quartile (Q3): {q3}")
+print(f"Interquartile Range (IQR): {iqr}")
 
-# Basic Statistical Summary for Quantitative Data
-print("\nQuantitative Data Summary Statistics:")
-print(quantitative_df.describe())
+# Step 4: Visualizing the data
+import matplotlib.pyplot as plt
 
-# Frequency count for Qualitative Data
-print("\nQualitative Data Frequency Counts:")
-print(qualitative_df['Gender'].value_counts())
-print(qualitative_df['City'].value_counts())
+plt.hist(data, bins=10, edgecolor='black', alpha=0.7)
+plt.title('Distribution of Scores')
+plt.xlabel('Scores')
+plt.ylabel('Frequency')
+plt.show()
+
+# Step 5: Normality Test (Shapiro-Wilk Test for Normality)
+stat, p_value = stats.shapiro(data)
+print(f"\nShapiro-Wilk Test for Normality:\nStatistic: {stat}, p-value: {p_value}")
+if p_value > 0.05:
+    print("The data seems to be normally distributed (fail to reject H0).")
+else:
+    print("The data is not normally distributed (reject H0).")
+
+# Step 6: Correlation (if there are two variables)
+# Example with another set of data (e.g., study hours and test scores)
+study_hours = [5, 6, 7, 8, 5, 10, 7, 9, 6, 8, 6, 7, 5, 9, 10]
+
+# Pearson Correlation Coefficient
+corr_coeff, p_value_corr = stats.pearsonr(data, study_hours)
+print(f"\nPearson Correlation Coefficient: {corr_coeff}, p-value: {p_value_corr}")
+if p_value_corr < 0.05:
+    print("There is a significant correlation between the two variables.")
+else:
+    print("No significant correlation between the two variables.")
